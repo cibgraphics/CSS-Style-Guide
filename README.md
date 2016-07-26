@@ -239,6 +239,6 @@ Specify the encoding in HTML via `<meta charset="utf-8">`. Do not specify the en
 
 Explain code as needed when possible.
 
-Use comments to explain code. What does it cover, what purpose does it serve. Be thoughtful in the amount of comments as a large project can quickly become unmaintainable with too many comments. Leave comments for only technically difficult or confusing parts of code.
+Use comments to explain code. What does it cover? What purpose does it serve? Be thoughtful in the amount of comments as a large project can quickly become unmaintainable with too many comments. Leave comments for only technically difficult or confusing parts of code.
 
 ## General HTML Formatting Rules
