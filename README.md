@@ -56,14 +56,6 @@ Indent by 2 spaces.
 
 Do not use tabs or mixed tabs and spaces for indentation.
 
-```html
-<ul>
-  <li></li>
-  <li></li>
-  <li></li>
-</ul>
-```
-
 ```css
 .example {
   color: blue;
@@ -90,20 +82,16 @@ Use only lowercase.
 
 All code has to be lowercase: This applies to HTML element names, attributes, attribute values (unless text/CDATA), CSS selectors, properties, and property values (with the exception of strings).
 
-```html
-<!-- Not Recommended -->
-<A HREF="#">Home</A>
-
-<!-- Recommended -->
-<a href="#">Home</a>
-```
-
 ```css
 /* Not recommended */
-color: #E5E5E5;
+HTML {
+  color: #E5E5E5;
+}
 
 /* Recommended */
-color: #e5e5e5;
+html {
+  color: #e5e5e5;
+}
 ```
 
 ### Trailing White Space
