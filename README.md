@@ -7,8 +7,15 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
   * [Protocal](#protocal)
 2. [CSS Formatting Rules](#css-formatting-rules)
   * [Indentation](#indentation)
+  * [Block Content Indentation](#block-content-indentation)
   * [Capitalization](#capitalization)
   * [Trailing White Space](#trailing-white-space)
+  * [Declaration Stops](#declaration-stops)
+  * [Property Name Stops](#property-name-stops)
+  * [Declaration Block Separation](#declaration-block-separation)
+  * [Selector and Declaration Separation](#selector-and-declaration-separation)
+  * [Rule Separation](#rule-separation)
+  * [CSS Quotation Marks](#css-quotation-marks)
 3. [CSS Style Rules](#css-style-rules)
   * [CSS Validity](#css-validity)
   * [ID and Classes](#id-and-classes)
@@ -62,6 +69,20 @@ Do not use tabs or mixed tabs and spaces for indentation.
 }
 ```
 
+### Block Content Indentation
+
+Indent all block content
+
+```css
+@media screen, projection {
+
+  html {
+    color: blue;
+  }
+
+}
+```
+
 ### Capitalization
 
 Use only lowercase.
@@ -99,6 +120,126 @@ Trailing white spaces are unnecessary and can complicate diffs.
 /* Recommended*/
 .example {
   color: blue;
+}
+```
+
+### Declaration Stops
+
+Use a semicolon after every declaration.
+
+```css
+/* Not Recommend */
+.example {
+  display: block;
+  color: blue
+}
+
+/* Recommended */
+.example {
+  display: block;
+  color: blue;
+}
+```
+
+### Property Name Stops
+
+Use a space after a property name's colon.
+
+```css
+/* Not Recommend */
+.example {
+  margin:20px;
+}
+
+/* Recommended */
+.example {
+  margin: 20px;
+}
+```
+
+### Declaration Block Separation
+
+Use a space between the first and last selector and the declaration block.
+
+Always use a single space between the last selector and the opening brace of the block. Blocks should never be on a single line. The opening brace should be on the same line as the last selector.
+
+```css
+/* Not Recommend */
+.example{
+  display: block;
+}
+
+/* Not Recommend */
+.example { display: block; }
+
+/* Not Recommend */
+.example
+{
+  display: block;
+}
+
+/* Recommended */
+.example {
+  display: block;
+}
+```
+
+### Selector and Declaration Separation
+
+Separate new selectors and declarations by new lines
+
+```css
+/* Not Recommend */
+h1, h2 {
+  font-weight: normal; top: 1px;
+}
+
+/* Not Recommend */
+.example { display: block; }
+
+/* Recommended */
+h1,
+h2 {
+  font-weight: normal;
+  top: 1px;
+}
+```
+
+### Rule Separation
+
+Separate new rules by news lines
+
+Always put a blank line (two line breaks) between rules
+
+```css
+html {
+  font-size: 12px;
+}
+
+body {
+  margin: auto;
+}
+```
+
+### CSS Quotation Marks
+
+Use a single quote for attribute selectors and property values.
+
+Do not use quotation marks for URL values.
+
+Exception: If you do need to use the @charset rule, use double quotation marks
+
+```css
+/* Not Recommend */
+html {
+  font-family: "open sans", arial, sans-serif;
+  background: url('example.jpg');
+}
+
+/* Recommended */
+html {
+  font-family: 'open sans', arial, sans-serif;
+  background: url(example.jpg);
 }
 ```
 
