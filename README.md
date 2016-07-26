@@ -31,6 +31,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
 4. [CSS Meta Rules](#css-meta-rules)
   * [Encoding](#encoding)
   * [Comments](#comments)
+  * [Section Comments](#section-comments)
 5. [General HTML Formatting Rules](#general-html-formatting-rules)
 
 ## General Meta Rules
@@ -381,5 +382,21 @@ Specify the encoding in HTML via `<meta charset="utf-8">`. Do not specify the en
 Explain code as needed when possible.
 
 Use comments to explain code. What does it cover? What purpose does it serve? Be thoughtful in the amount of comments as a large project can quickly become unmaintainable with too many comments. Leave comments for only technically difficult or confusing parts of code.
+
+### Section Comments
+
+Group sections by a section comment
+
+If possible, group stylesheet sections by using comments
+
+```css
+/*
+-----------------------------------------
+Large Section Comment
+-----------------------------------------
+*/
+
+/* Small Section Comment*/
+```
 
 ## General HTML Formatting Rules
