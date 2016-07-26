@@ -4,7 +4,11 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
 
 ## Table of Contents
 1. [General Meta Rules](#general-meta-rules)
+  * [Protocal](#protocal)
 2. [CSS Formatting Rules](#css-formatting-rules)
+  * [Indentation](#indentation)
+  * [Capitalization](#capitalization)
+  * [Trailing White Space](#trailing-white-space)
 3. [CSS Style Rules](#css-style-rules)
 4. [CSS Meta Rules](#css-meta-rules)
 5. [General HTML Formatting Rules](#general-html-formatting-rules)
