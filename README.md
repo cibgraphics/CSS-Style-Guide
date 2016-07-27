@@ -203,7 +203,7 @@ h2 {
 
 ### Rule Separation
 
-Separate new rules by news lines
+Separate new rules by new lines.
 
 Always put a blank line (two line breaks) between rules
 
@@ -438,6 +438,43 @@ css/
 |   ...
 |
 |-- style.scss            # Primary Sass file
+```
+
+### Nesting Rule Separation
+
+Separate blocks of rules by new lines.
+
+The only exception to this is if the parent do not have any styles.
+
+```css
+/* Not Recommended */
+.container {
+
+  p {
+    color: blue;
+    span {
+      display: block;
+    }
+  }
+  ul {
+    margin: 20px;
+  }
+}
+
+/* Recommended */
+.container {
+  p {
+    color: blue;
+
+    span {
+      display: block;
+    }
+  }
+  
+  ul {
+    margin: 20px;
+  }
+}
 ```
 
 ___
