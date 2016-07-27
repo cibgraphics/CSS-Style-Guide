@@ -33,6 +33,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
   * [Comments](#comments)
   * [Section Comments](#section-comments)
 5. [CSS Preprocessor Rules](#css-preprocessor-rules)
+  * [File Organization](#file-organization)
 6. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
   * [Clearing Floats](#clearing-floats)
   * [Rem Font Sizes](#rem-font-sizes)
@@ -50,6 +51,9 @@ Omit the protocol portion (http:, https:) from URLs pointing to external stylesh
 <!-- Recommended -->
 <link href="//www.example.com/style.css" rel="stylesheet" media="screen" />
 ```
+
+___
+
 
 ## CSS Formatting Rules
 
@@ -235,6 +239,9 @@ html {
 }
 ```
 
+___
+
+
 ## CSS Style Rules
 
 ### CSS Validity
@@ -390,7 +397,51 @@ Large Section Comment
 /* Small Section Comment*/
 ```
 
+___
+
+
 ## CSS Preprocessor Rules
+
+### File Organization
+
+Separate your files into logical groups.
+
+Split your files into logical files and folders to keep things organized and clear to understand. There are many ways to do this. **The following is an example of what *could* be done, but not what *has* to be done**.
+
+##### Example Structure for SCSS
+
+```
+css/
+|
+|-- modules/              # Common modules
+|   |-- _variables.scss
+|   |-- _mixins.scss
+|   |-- _general.scss
+|   |-- _layout.scss
+|   |-- _typogrpahy.scss
+|   ...
+|
+|-- partials/             # Partials
+|   |-- _masthead.sass
+|   |-- _footer.scss
+|   |-- _home.scss      
+|   ...
+|
+|-- vendor/               # CSS or Sass from other projects
+|   |-- _colorpicker.scss
+|   |-- _jquery.ui.core.scss
+|   ...
+|
+|-- media-queries/        # Media Queries (if using separate files)
+|   |-- _responsive-768.scss
+|   |-- _responsive-480.scss
+|   ...
+|
+|-- style.scss            # Primary Sass file
+```
+
+___
+
 
 ## CSS Preprocessor Helpers
 
