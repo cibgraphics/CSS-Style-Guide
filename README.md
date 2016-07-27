@@ -38,6 +38,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
 6. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
   * [Clearing Floats](#clearing-floats)
   * [Rem Units](#rem-units)
+  * [Box Sizing Mixin](#box-sizing-mixin)
 
 ## General Meta Rules
 
@@ -603,3 +604,19 @@ By default this mixin will output to font-size. If you need to use another prope
     <td>Property</td><td>Optional</td><td>'font-size'</td>
   </tr>
 </table>
+
+### Box Sizing Mixin
+
+Mixin for defining box sizing.
+
+```css
+/* Mixin for Box Sizing */
+@mixin box-sizing($sizing: border-box) {
+     -moz-box-sizing: $sizing;
+  -webkit-box-sizing: $sizing;
+          box-sizing: $sizing;
+}
+
+/* Usage */
+@include box-sizing();
+```
