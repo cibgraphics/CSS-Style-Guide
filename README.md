@@ -34,6 +34,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
   * [Section Comments](#section-comments)
 5. [CSS Preprocessor Rules](#css-preprocessor-rules)
   * [File Organization](#file-organization)
+  * [Nesting Rule Separation](#nesting-rule-separation)
 6. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
   * [Clearing Floats](#clearing-floats)
   * [Rem Units](#rem-units)
@@ -470,7 +471,7 @@ The only exception to this is if the parent do not have any styles.
       display: block;
     }
   }
-  
+
   ul {
     margin: 20px;
   }
