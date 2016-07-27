@@ -447,7 +447,7 @@ ___
 
 ### Clearing Floats
 
-There are many ways to clear a float, but this does it in the most efficient way possible. Support IE8 and above.
+There are many ways to clear a float, but the following does it in the most efficient way possible. Support is IE8 and above.
 
 ##### CSS
 
@@ -502,7 +502,7 @@ There are many ways to clear a float, but this does it in the most efficient way
 
 Using rem units gives us flexibility in our designs, and the ability to scale elements up and down, instead of being stuck with fixed sizes. We can use this flexibility to make our designs easier to adjust during development, more responsive, and to allow browser users to control the overall scale of sites for maximum readability.
 
-With this Rem conversion you can automatically convert a px unit into a rem with px unit fallback.
+With this rem conversion you can automatically convert a px unit into a rem with px unit fall back.
 
 ##### SCSS
 
