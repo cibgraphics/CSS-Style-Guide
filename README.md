@@ -32,7 +32,10 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
   * [Encoding](#encoding)
   * [Comments](#comments)
   * [Section Comments](#section-comments)
-5. [General HTML Formatting Rules](#general-html-formatting-rules)
+5. [CSS Preprocessor Rules](#css-preprocessor-rules)
+6. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
+  * [Clearing Floats](#clearing-floats)
+  * [Rem Font Sizes](#rem-font-sizes)
 
 ## General Meta Rules
 
@@ -387,4 +390,127 @@ Large Section Comment
 /* Small Section Comment*/
 ```
 
-## General HTML Formatting Rules
+## CSS Preprocessor Rules
+
+## CSS Preprocessor Helpers
+
+### Clearing Floats
+
+There are many ways to clear a float, but this does it in the most efficient way possible. Support IE8 and above.
+
+##### CSS
+
+```css
+/* Use as a class */
+.clear-fix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+```
+
+##### SCSS
+
+```css
+/* Use as a mixin */
+@mixin clear-fix() {
+  .clear-fix {
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+/* Usage */
+.example {
+  @include clear-fix();
+}
+```
+
+##### LESS
+
+```css
+/* Use as a mixin */
+.clear-fix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/* Usage */
+.example {
+  .clear-fix();
+}
+```
+
+### Rem Font Sizes
+
+Using rem units gives us flexibility in our designs, and the ability to scale elements up and down, instead of being stuck with fixed sizes. We can use this flexibility to make our designs easier to adjust during development, more responsive, and to allow browser users to control the overall scale of sites for maximum readability.
+
+With this Rem conversion you can automatically convert a px unit into a rem with px unit fallback.
+
+##### SCSS
+
+```css
+/* Requires $font-size variable to be set */
+$font-size: 14px;
+
+/* Requires function to strip units */
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+/* Mixin for Rem Conversion */
+@mixin rem-size($value, $property: font-size) {
+  $pxValue: strip-unit($value);
+  $baseValue: strip-unit($font-size);
+  $remValue: ($pxValue / $baseValue);
+  #{$property}: $value;
+  #{$property}: $remValue + rem;
+}
+
+/* Usage */
+p {
+  @include rem-size(20px);
+}
+```
+
+##### LESS
+```css
+/* Requires @font-size variable to be set */
+@font-size: 14px;
+
+/* Mixin for Rem Conversion */
+.rem-size(@value, @property: font-size) {
+  @pxValue: unit(@value);
+  @baseValue: unit(@font-size);
+  @remValue: (@pxValue / @baseValue);
+  @{property}: @value;
+  @{property}: unit(@remValue,rem);
+}
+
+/* Usage */
+p {
+  .rem-size(20px);
+}
+```
+
+By default this mixin will output to font-size. If you need to use another property instead of font-size you can pass a 2nd argument with the desired property to the mixin.
+
+<table>
+  <tr>
+    <th>Argument</th>
+    <th>Required</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td>Value</td><td>Required</td><td>None</td>
+  </tr>
+  <tr>
+    <td>Property</td><td>Optional</td><td>'font-size'</td>
+  </tr>
+</table>
