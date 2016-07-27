@@ -36,7 +36,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
   * [File Organization](#file-organization)
 6. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
   * [Clearing Floats](#clearing-floats)
-  * [Rem Font Sizes](#rem-font-sizes)
+  * [Rem Units](#rem-units)
 
 ## General Meta Rules
 
@@ -498,7 +498,7 @@ There are many ways to clear a float, but the following does it in the most effi
 }
 ```
 
-### Rem Font Sizes
+### Rem Units
 
 Using rem units gives us flexibility in our designs, and the ability to scale elements up and down, instead of being stuck with fixed sizes. We can use this flexibility to make our designs easier to adjust during development, more responsive, and to allow browser users to control the overall scale of sites for maximum readability.
 
