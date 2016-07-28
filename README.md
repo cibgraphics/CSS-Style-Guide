@@ -35,6 +35,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
 5. [CSS Preprocessor Rules](#css-preprocessor-rules)
   * [File Organization](#file-organization)
   * [Nesting Rule Separation](#nesting-rule-separation)
+  * [Multiple Variable Declaration](#multiple-variable-declaration)
 6. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
   * [Clearing Floats](#clearing-floats)
   * [Rem Units](#rem-units)
@@ -73,7 +74,7 @@ Do not use tabs or mixed tabs and spaces for indentation.
 
 ### Block Content Indentation
 
-Indent all block content
+Indent all block content.
 
 ```css
 @media screen, projection {
@@ -184,7 +185,7 @@ Always use a single space between the last selector and the opening brace of the
 
 ### Selector and Declaration Separation
 
-Separate new selectors and declarations by new lines
+Separate new selectors and declarations by new lines.
 
 ```css
 /* Not Recommend */
@@ -207,7 +208,7 @@ h2 {
 
 Separate new rules by new lines.
 
-Always put a blank line (two line breaks) between rules
+Always put a blank line (two line breaks) between rules.
 
 ```css
 html {
@@ -225,7 +226,7 @@ Use a single quote for attribute selectors and property values.
 
 Do not use quotation marks for URL values.
 
-Exception: If you do need to use the @charset rule, use double quotation marks
+Exception: If you do need to use the @charset rule, use double quotation marks.
 
 ```css
 /* Not Recommend */
@@ -248,7 +249,7 @@ ___
 
 ### CSS Validity
 
-Use valid CSS where possible
+Use valid CSS where possible.
 
 Use only valid CSS code using such tools as the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/). Validations tools can not spot all errors and may even give false positives for newer valid CSS. Take care to note that valid CSS can still contain visual bugs as support and implementation of properties can vary from browser to browser.
 
@@ -260,7 +261,7 @@ For general page styling uses classes. ID's should be reserved for special cases
 
 ### ID and Class Naming
 
-Use meaningful or generic ID or class names
+Use meaningful or generic ID or class names.
 
 Use ID and class names that reflect the purpose of the element in question, or that is otherwise generic that can be used anywhere needed. Names that reflect presentational or cryptic in nature should be avoided.
 
@@ -276,7 +277,7 @@ Use ID and class names that reflect the purpose of the element in question, or t
 
 ### ID and Class Name Delimiters
 
-Separate ID and class names by hyphens
+Separate ID and class names by hyphens.
 
 Do not use underscores, camel case, double hyphens, or any other delimiters.
 
@@ -357,10 +358,10 @@ Use 3 character hexadecimal notation where possible.
 
 ```css
 /* Not Recommended */
-color: #eebbcc
+color: #eebbcc;
 
 /* Recommended */
-color: #ebc
+color: #ebc;
 ```
 
 ### Hacks
@@ -375,7 +376,7 @@ The days of IE6 are far behind us. Avoid hacks to target specific browsers unles
 
 Use UTF-8.
 
-Specify the encoding in HTML via `<meta charset="utf-8">`. Do not specify the encoding of stylesheets as these assume UTF-8
+Specify the encoding in HTML via `<meta charset="utf-8">`. Do not specify the encoding of stylesheets as these assume UTF-8.
 
 ### Comments
 
@@ -385,9 +386,9 @@ Use comments to explain code. What does it cover? What purpose does it serve? Be
 
 ### Section Comments
 
-Group sections by a section comment
+Group sections by a section comment.
 
-If possible, group stylesheet sections by using comments
+If possible, group stylesheet sections by using comments.
 
 ```css
 /*
@@ -477,6 +478,18 @@ The only exception to this is if the parent do not have any styles.
     margin: 20px;
   }
 }
+```
+
+### Multiple Variable Declaration
+
+Line up all properties and values when declaring multiple variables.
+
+```css
+/* SCSS Variables */
+$primary:        #b20215;
+$secondary:      #149ff6;
+$grey:           #848484;
+$brown:          #a89f94;
 ```
 
 ___
