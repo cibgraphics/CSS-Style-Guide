@@ -116,7 +116,7 @@ Trailing white spaces are unnecessary and can complicate diffs.
   color: blue;_
 }
 
-/* Recommended*/
+/* Recommended */
 .example {
   color: blue;
 }
