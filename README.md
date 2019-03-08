@@ -416,21 +416,27 @@ Split your files into logical files and folders to keep things organized and cle
 ```
 css/
 |
-|-- modules/              # Common modules
+|-- helpers/              # Bootstrapping
+|   |-- _normalize.scss
 |   |-- _variables.scss
 |   |-- _mixins.scss
+|
+|-- base-styles/          # Base Styles
 |   |-- _general.scss
 |   |-- _layout.scss
+|   |-- _fonts.scss
 |   |-- _typogrpahy.scss
+|   |-- _buttons.scss
+|   |-- _forms.scss
 |   ...
 |
-|-- partials/             # Partials
+|-- modules/              # Modules
 |   |-- _masthead.sass
 |   |-- _footer.scss
 |   |-- _home.scss      
 |   ...
 |
-|-- vendor/               # CSS or Sass from other projects
+|-- utility/              # CSS or Sass from other projects
 |   |-- _colorpicker.scss
 |   |-- _jquery.ui.core.scss
 |   ...
