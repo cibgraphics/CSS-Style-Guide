@@ -16,6 +16,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
     * [Selector and Declaration Separation](#selector-and-declaration-separation)
     * [Rule Separation](#rule-separation)
     * [CSS Quotation Marks](#css-quotation-marks)
+    * [Nesting Rule Separation](#nesting-rule-separation)
 3. [CSS Style Rules](#css-style-rules)
     * [CSS Validity](#css-validity)
     * [ID and Classes](#id-and-classes)
@@ -37,7 +38,6 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
     * [Logical Properties](#logical-properties)
 6. [CSS Preprocessor Rules](#css-preprocessor-rules)
     * [File Organization](#file-organization)
-    * [Nesting Rule Separation](#nesting-rule-separation)
     * [Multiple Variable Declaration](#multiple-variable-declaration)
 7. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
     * [Breakpoints](#breakpoints)
@@ -281,6 +281,45 @@ input[type="text"] {
 
 ```css
 @charset "UTF-8";
+```
+
+---
+
+### Nesting Rule Separation
+
+Separate blocks of rules by new lines.
+
+The only exception to this is if the parent do not have any styles.
+
+```css
+/* Not Recommended */
+.container {
+
+  p {
+    color: blue;
+    span {
+      display: block;
+    }
+  }
+  ul {
+    margin: 20px;
+  }
+}
+
+/* Recommended */
+.container {
+  p {
+    color: blue;
+
+    span {
+      display: block;
+    }
+  }
+
+  ul {
+    margin: 20px;
+  }
+}
 ```
 
 
@@ -551,50 +590,12 @@ css/
 |   |-- _home.scss      
 |   ...
 |
-|-- utility/              # CSS or Sass from other projects
+|-- utility/              # CSS or Sass from other projects or libraries
 |   |-- _colorpicker.scss
-|   |-- _jquery.ui.core.scss
+|   |-- _slider.scss
 |   ...
 |
 |-- style.scss            # Primary Sass file
-```
-
----
-### Nesting Rule Separation
-
-Separate blocks of rules by new lines.
-
-The only exception to this is if the parent do not have any styles.
-
-```css
-/* Not Recommended */
-.container {
-
-  p {
-    color: blue;
-    span {
-      display: block;
-    }
-  }
-  ul {
-    margin: 20px;
-  }
-}
-
-/* Recommended */
-.container {
-  p {
-    color: blue;
-
-    span {
-      display: block;
-    }
-  }
-
-  ul {
-    margin: 20px;
-  }
-}
 ```
 
 ---
@@ -612,24 +613,6 @@ $brown:          #a89f94;
 
 Prefer CSS custom properties for runtime theming and overrides — see the [CSS Custom Properties](#css-custom-properties) section above. Use SCSS variables only when you need build-time values or computations that cannot be expressed with CSS alone.
 
-Prefer CSS custom properties (native "CSS variables") wherever possible before falling back to preprocessor variables like SCSS's. Custom properties are dynamic at runtime, participate in the cascade, can be changed with media queries or JavaScript, and make theming and overrides much simpler. Use SCSS variables only when you need build-time values or to compute values that cannot be expressed with CSS alone.
-
-Example (preferred):
-
-```css
-:root {
-  --primary: #b20215;
-  --secondary: #149ff6;
-  --grey: #848484;
-  --brown: #a89f94;
-}
-
-.button {
-  color: var(--primary);
-}
-```
-
-If you need to provide a fallback or support older tooling, you can combine approaches (for example using `var(--primary, #b20215)` or keeping an SCSS variable for computed fallbacks), but prefer custom properties as the first choice.
 
 ## CSS Preprocessor Helpers
 
