@@ -24,6 +24,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
   * [ID and Class Name Style](#id-and-class-name-style)
   * [Type Selectors](#type-selectors)
   * [Shorthand Properties](#shorthand-properties)
+  * [Logical Properties](#logical-properties)
   * [0 and Units](#0-and-units)
   * [Leading 0s](#leading-0s)
   * [Hexadecimal Notation](#hexadecimal-notation)
@@ -334,6 +335,42 @@ margin-left: 10px;
 /* Recommended */
 margin: 0 20px 10px 10px;
 ```
+
+### Logical Properties
+
+Use CSS logical properties instead of physical properties to keep layouts direction-agnostic and easier to maintain. Logical properties adapt automatically to LTR, RTL, and other writing modes.
+
+**Use:**
+- `margin-inline`, `margin-block`
+- `padding-inline`, `padding-block`
+- `inset`, `inset-inline`, `inset-block`
+- `border-inline-start`, `border-inline-end`
+- `border-block-start`, `border-block-end`
+
+**Avoid:**
+- Physical properties like `margin-left`, `padding-right`, `top`, `bottom`, etc.
+- Mixing logical and physical properties on the same element unless unavoidable for legacy reasons.
+
+**Example**
+```css
+/* Preferred */
+.card {
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-block-start: 2px solid var(--border);
+  inset-inline: 0;
+}
+
+/* Avoid */
+.card {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-top: 2px solid var(--border);
+  left: 0;
+  right: 0;
+}
 
 ### 0 and Units
 
