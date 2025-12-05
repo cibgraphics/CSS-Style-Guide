@@ -823,14 +823,17 @@ p {
 
 Mixin for defining box sizing.
 
+Mixin:
 ```css
-/* Mixin for Box Sizing */
 @mixin box-sizing($sizing: border-box) {
      -moz-box-sizing: $sizing;
   -webkit-box-sizing: $sizing;
           box-sizing: $sizing;
 }
+```
 
-/* Usage */
+Usage:
+
+```css
 @include box-sizing();
 ```
