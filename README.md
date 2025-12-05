@@ -393,10 +393,11 @@ padding: 0;
 ---
 ### Leading 0s
 
-Omit leading 0s in values.
+Always include leading zeros for decimal values for improved readability.
 
 ```css
-font-size: .8rem;
+font-size: 0.8rem;
+opacity: 0.5;
 ```
 
 ---
