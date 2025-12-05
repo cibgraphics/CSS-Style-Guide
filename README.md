@@ -24,7 +24,6 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
   * [ID and Class Name Style](#id-and-class-name-style)
   * [Type Selectors](#type-selectors)
   * [Shorthand Properties](#shorthand-properties)
-  * [Logical Properties](#logical-properties)
   * [0 and Units](#0-and-units)
   * [Leading 0s](#leading-0s)
   * [Hexadecimal Notation](#hexadecimal-notation)
@@ -33,31 +32,32 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
   * [Encoding](#encoding)
   * [Comments](#comments)
   * [Section Comments](#section-comments)
-5. [CSS Preprocessor Rules](#css-preprocessor-rules)
+5. [Modern CSS](#modern-css)
+  * [CSS Custom Properties](#css-custom-properties)
+  * [Logical Properties](#logical-properties)
+6. [CSS Preprocessor Rules](#css-preprocessor-rules)
   * [File Organization](#file-organization)
   * [Nesting Rule Separation](#nesting-rule-separation)
   * [Multiple Variable Declaration](#multiple-variable-declaration)
-6. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
+7. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
   * [Clearing Floats](#clearing-floats)
   * [Rem Units](#rem-units)
   * [Box Sizing Mixin](#box-sizing-mixin)
+
 
 ## General Meta Rules
 
 ### Protocol
 
-Omit the protocol portion (http:, https:) from URLs pointing to external stylesheets and other media files unless the respective files are not available over both protocols.
+Always include the protocol (`https://`) for external resources. Explicit `https://` URLs ensure secure, predictable loading and avoid ambiguity caused by protocol-relative URLs. Use `https://` for external stylesheets and other media whenever they are available over HTTPS.
 
 ```html
-<!-- Not recommended -->
+<!-- Recommended -->
 <link href="https://www.example.com/style.css" rel="stylesheet" media="screen" />
 
-<!-- Recommended -->
+<!-- Avoid -->
 <link href="//www.example.com/style.css" rel="stylesheet" media="screen" />
 ```
-
-___
-
 
 ## CSS Formatting Rules
 
@@ -73,6 +73,7 @@ Do not use tabs or mixed tabs and spaces for indentation.
 }
 ```
 
+---
 ### Block Content Indentation
 
 Indent all block content.
@@ -87,6 +88,7 @@ Indent all block content.
 }
 ```
 
+---
 ### Capitalization
 
 Use only lowercase.
@@ -105,6 +107,7 @@ html {
 }
 ```
 
+---
 ### Trailing White Space
 
 Remove trailing white spaces.
@@ -123,6 +126,7 @@ Trailing white spaces are unnecessary and can complicate diffs.
 }
 ```
 
+---
 ### Declaration Stops
 
 Use a semicolon after every declaration.
@@ -141,6 +145,7 @@ Use a semicolon after every declaration.
 }
 ```
 
+---
 ### Property Name Stops
 
 Use a space after a property name's colon.
@@ -157,6 +162,7 @@ Use a space after a property name's colon.
 }
 ```
 
+---
 ### Declaration Block Separation
 
 Use a space between the first and last selector and the declaration block.
@@ -184,6 +190,7 @@ Always use a single space between the last selector and the opening brace of the
 }
 ```
 
+---
 ### Selector and Declaration Separation
 
 Separate new selectors and declarations by new lines.
@@ -191,20 +198,20 @@ Separate new selectors and declarations by new lines.
 ```css
 /* Not Recommend */
 h1, h2 {
-  font-weight: normal; top: 1px;
+  font-weight: normal; inset-block-start: 1px;
 }
 
 /* Not Recommend */
 .example { display: block; }
 
-/* Recommended */
-h1,
+/* Recommend */
 h2 {
   font-weight: normal;
-  top: 1px;
+  inset-block-start: 1px;
 }
 ```
 
+---
 ### Rule Separation
 
 Separate new rules by new lines.
@@ -221,6 +228,7 @@ body {
 }
 ```
 
+---
 ### CSS Quotation Marks
 
 Use a single quote for attribute selectors and property values.
@@ -243,8 +251,6 @@ html {
 }
 ```
 
-___
-
 
 ## CSS Style Rules
 
@@ -254,12 +260,14 @@ Use valid CSS where possible.
 
 Use only valid CSS code using such tools as the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/). Validations tools can not spot all errors and may even give false positives for newer valid CSS. Take care to note that valid CSS can still contain visual bugs as support and implementation of properties can vary from browser to browser.
 
+---
 ### ID and Classes
 
 Use classes for modularity.
 
 For general page styling uses classes. ID's should be reserved for special cases or hooks into other languages such as Javascript.
 
+---
 ### ID and Class Naming
 
 Use meaningful or generic ID or class names.
@@ -276,6 +284,7 @@ Use ID and class names that reflect the purpose of the element in question, or t
 .login {}
 ```
 
+---
 ### ID and Class Name Delimiters
 
 Separate ID and class names by hyphens.
@@ -292,6 +301,7 @@ Do not use underscores, camel case, double hyphens, or any other delimiters.
 .error-status {}
 ```
 
+---
 ### ID and Class Name Style
 
 Use ID and class names that are as short as possible but as long as necessary.
@@ -308,6 +318,7 @@ Use ID and Class names that is easy to understand but is not verbose. This will 
 .navigation {}
 ```
 
+---
 ### Type Selectors
 
 Avoid qualifying ID and class names with type selectors.
@@ -320,6 +331,7 @@ div.example {}
 .example {}
 ```
 
+---
 ### Shorthand Properties
 
 Use shorthand properties where possible.
@@ -328,51 +340,15 @@ Using shorthand properties is useful for code efficiency and understandability.
 
 ```css
 /* Not Recommended */
-margin-right: 20px;
-margin-bottom: 10px;
-margin-left: 10px;
+margin-inline-start: 10px;
+margin-inline-end: 20px;
+margin-block-end: 10px;
 
 /* Recommended */
 margin: 0 20px 10px 10px;
 ```
 
-### Logical Properties
-
-Use CSS logical properties instead of physical properties to keep layouts direction-agnostic and easier to maintain. Logical properties adapt automatically to LTR, RTL, and other writing modes.
-
-**Use:**
-- `margin-inline`, `margin-block`
-- `padding-inline`, `padding-block`
-- `inset`, `inset-inline`, `inset-block`
-- `border-inline-start`, `border-inline-end`
-- `border-block-start`, `border-block-end`
-
-**Avoid:**
-- Physical properties like `margin-left`, `padding-right`, `top`, `bottom`, etc.
-- Mixing logical and physical properties on the same element unless unavoidable for legacy reasons.
-
-**Example**
-```css
-/* Preferred */
-.card {
-  padding-block: 1rem;
-  padding-inline: 1.5rem;
-  border-block-start: 2px solid var(--border);
-  inset-inline: 0;
-}
-
-/* Avoid */
-.card {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  border-top: 2px solid var(--border);
-  left: 0;
-  right: 0;
-}
-```
-
+---
 ### 0 and Units
 
 Omit units after "0" values.
@@ -382,6 +358,7 @@ margin: 0;
 padding: 0;
 ```
 
+---
 ### Leading 0s
 
 Omit leading 0s in values.
@@ -390,6 +367,7 @@ Omit leading 0s in values.
 font-size: .8rem;
 ```
 
+---
 ### Hexadecimal Notation
 
 Use 3 character hexadecimal notation where possible.
@@ -402,26 +380,31 @@ color: #eebbcc;
 color: #ebc;
 ```
 
+---
 ### Hacks
 
 Avoid CSS hacks. Try a different approach first.
 
 The days of IE6 are far behind us. Avoid hacks to target specific browsers unless absolutely necessary. Try a different coding approach first before resorting to a "hack".
 
+---
 ## CSS Meta Rules
 
+---
 ### Encoding
 
 Use UTF-8.
 
 Specify the encoding in HTML via `<meta charset="utf-8">`. Do not specify the encoding of stylesheets as these assume UTF-8.
 
+---
 ### Comments
 
 Explain code as needed when possible.
 
 Use comments to explain code. What does it cover? What purpose does it serve? Be thoughtful in the amount of comments as a large project can quickly become unmaintainable with too many comments. Leave comments for only technically difficult or confusing parts of code.
 
+---
 ### Section Comments
 
 Group sections by a section comment.
@@ -438,11 +421,69 @@ Large Section Comment
 /* Small Section Comment*/
 ```
 
-___
 
+## Modern CSS
+
+### CSS Custom Properties
+
+Prefer CSS custom properties (native "CSS variables") wherever possible before falling back to preprocessor variables like SCSS's. Custom properties are dynamic at runtime, participate in the cascade, can be changed with media queries or JavaScript, and make theming and overrides much simpler. Use SCSS variables only when you need build-time values or to compute values that cannot be expressed with CSS alone.
+
+Example (preferred):
+
+```css
+:root {
+  --primary: #b20215;
+  --secondary: #149ff6;
+  --grey: #848484;
+  --brown: #a89f94;
+}
+
+.button {
+  color: var(--primary);
+}
+```
+
+---
+### Logical Properties
+
+Use CSS logical properties instead of physical properties to keep layouts direction-agnostic and easier to maintain. Logical properties adapt automatically to LTR, RTL, and other writing modes.
+
+**Avoid:**
+- Physical properties like `margin-left`, `padding-right`, `top`, `bottom`, etc.
+- Mixing logical and physical properties on the same element unless unavoidable for legacy reasons.
+
+**Use:**
+- `margin-inline`, `margin-block`
+- `padding-inline`, `padding-block`
+- `inset`, `inset-inline`, `inset-block`
+- `border-inline-start`, `border-inline-end`
+- `border-block-start`, `border-block-end`
+
+**Example**
+```css
+/* Not Recommended */
+.card {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-top: 2px solid var(--border);
+  left: 0;
+  right: 0;
+}
+
+/* Recommended */
+.card {
+  padding-block: 1rem;
+  padding-inline: 1.5rem;
+  border-block-start: 2px solid var(--border);
+  inset-inline: 0;
+}
+```
 
 ## CSS Preprocessor Rules
 
+---
 ### File Organization
 
 Separate your files into logical groups.
@@ -479,14 +520,10 @@ css/
 |   |-- _jquery.ui.core.scss
 |   ...
 |
-|-- media-queries/        # Media Queries (if using separate files)
-|   |-- _responsive-768.scss
-|   |-- _responsive-480.scss
-|   ...
-|
 |-- style.scss            # Primary Sass file
 ```
 
+---
 ### Nesting Rule Separation
 
 Separate blocks of rules by new lines.
@@ -524,6 +561,7 @@ The only exception to this is if the parent do not have any styles.
 }
 ```
 
+---
 ### Multiple Variable Declaration
 
 Line up all properties and values when declaring multiple variables.
@@ -536,10 +574,168 @@ $grey:           #848484;
 $brown:          #a89f94;
 ```
 
-___
+Prefer CSS custom properties for runtime theming and overrides — see the [CSS Custom Properties](#css-custom-properties) section above. Use SCSS variables only when you need build-time values or computations that cannot be expressed with CSS alone.
 
+Prefer CSS custom properties (native "CSS variables") wherever possible before falling back to preprocessor variables like SCSS's. Custom properties are dynamic at runtime, participate in the cascade, can be changed with media queries or JavaScript, and make theming and overrides much simpler. Use SCSS variables only when you need build-time values or to compute values that cannot be expressed with CSS alone.
+
+Example (preferred):
+
+```css
+:root {
+  --primary: #b20215;
+  --secondary: #149ff6;
+  --grey: #848484;
+  --brown: #a89f94;
+}
+
+.button {
+  color: var(--primary);
+}
+```
+
+If you need to provide a fallback or support older tooling, you can combine approaches (for example using `var(--primary, #b20215)` or keeping an SCSS variable for computed fallbacks), but prefer custom properties as the first choice.
 
 ## CSS Preprocessor Helpers
+
+### Breakpoints
+
+You should have a single source of breakpoints to reference. You may have how ever many your project needs.
+
+```css
+$breakpoints: (
+  "mega-wide": 1600px,
+  "ultra-wide": 1440px,
+  "desktop-wide": 1248px,
+  "desktop": 1024px,
+  "desktop-small": 992px,
+  "tablet-wide": 850px,
+  "tablet": 768px,
+  "tablet-small": 720px,
+  "phone-wide": 600px,
+  "phone": 480px,
+  "phone-small": 400px,
+  "mini": 375px,
+);
+```
+
+---
+
+### Media Queries
+
+This is a helpful mixin to generate media queries automatically that is mobile first. When support is added to browsers, the query range syntax is preferred.
+
+Mixin:
+```css
+@mixin mq($width, $type: ">=") {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+  }
+  // For the future
+  // @media only screen and (width #{$type} $width) {
+  //   @content;
+  // }
+
+  @if $type == ">=" {
+    @media only screen and (min-width: $width) {
+      @content;
+    }
+  } @else if $type == "<=" {
+    @media only screen and (max-width: $width) {
+      @content;
+    }
+  } @else if $type == ">" {
+    @media only screen and (min-width: $width + 1px) {
+      @content;
+    }
+  } @else if $type == "<" {
+    @media only screen and (max-width: $width - 1px) {
+      @content;
+    }
+  }
+}
+
+```
+
+```css
+/* Usage: */
+
+@include mq('tablet') {
+  ... styles
+}
+```
+
+
+---
+
+### Container Queries
+
+By default, the container query mixin will take a mobile first approach. When support is added to browsers, the query range syntax is preferred.
+
+To use you need to define a container first by 
+
+```css
+  container: container-name / container-type;
+```
+  Example usage:
+```css
+  container: product-card / inline-size;
+```
+  You can also define the name and type seperatly and can be used on different elements. 
+```css
+  container-name: product-card;
+  container-type: inline-size;
+```
+Mixin:
+
+```css
+@mixin container($width, $containerName: "", $type: ">=") {
+  $widthValue: null;
+
+  // Check if the width is a key in the breakpoints map and get the corresponding value
+  @if map_has_key($breakpoints, $width) {
+    $widthValue: map_get($breakpoints, $width);
+  } @else {
+    $widthValue: $width;
+  }
+
+  // For the future
+  // @container #{$containerName} (width #{$type} #{$width}) {
+  //   @content;
+  // }
+
+  @if $type == ">=" {
+    @container #{$containerName} (min-width: #{$widthValue}) {
+      @content;
+    }
+  } @else if $type == "<=" {
+    @container #{$containerName} (max-width: #{$widthValue}) {
+      @content;
+    }
+  } @else if $type == ">" {
+    @container #{$containerName} (min-width: #{($widthValue + 1px)}) {
+      @content;
+    }
+  } @else if $type == "<" {
+    @container #{$containerName} (max-width: #{($widthValue + 1px)}) {
+      @content;
+    }
+  }
+}
+```
+
+```css
+/* Usage */
+
+.container {
+  container: product-card / inline-size;
+}
+
+@include container('tablet', 'product-card') {
+  ... styles
+}
+```
+
+---
 
 ### Clearing Floats
 
@@ -576,24 +772,7 @@ There are many ways to clear a float, but the following does it in the most effi
 }
 ```
 
-##### LESS
-
-```css
-/* Use as a mixin */
-.clear-fix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
-/* Usage */
-.example {
-  .clear-fix();
-}
-```
-
+---
 ### Rem Units
 
 Using rem units gives us flexibility in our designs, and the ability to scale elements up and down, instead of being stuck with fixed sizes. We can use this flexibility to make our designs easier to adjust during development, more responsive, and to allow browser users to control the overall scale of sites for maximum readability.
@@ -603,65 +782,22 @@ With this rem conversion you can automatically convert a px unit into a rem with
 ##### SCSS
 
 ```css
-/* Requires $font-size variable to be set */
-$font-size: 14px;
+/* Requires custom property without unit */
+--base-font-size-strip: 16;
 
-/* Requires function to strip units */
-@function strip-unit($num) {
-  @return $num / ($num * 0 + 1);
-}
+@use "sass:math";
 
-/* Mixin for Rem Conversion */
-@mixin rem-size($value, $property: font-size) {
-  $pxValue: strip-unit($value);
-  $baseValue: strip-unit($font-size);
-  $remValue: ($pxValue / $baseValue);
-  #{$property}: $value;
-  #{$property}: $remValue + rem;
+@function rem($value) {
+  @return calc(#{$value} / var(--base-font-size-strip) * 1rem);
 }
 
 /* Usage */
 p {
-  @include rem-size(20px);
+  font-size: rem(20);
 }
 ```
 
-##### LESS
-```css
-/* Requires @font-size variable to be set */
-@font-size: 14px;
-
-/* Mixin for Rem Conversion */
-.rem-size(@value, @property: font-size) {
-  @pxValue: unit(@value);
-  @baseValue: unit(@font-size);
-  @remValue: (@pxValue / @baseValue);
-  @{property}: @value;
-  @{property}: unit(@remValue,rem);
-}
-
-/* Usage */
-p {
-  .rem-size(20px);
-}
-```
-
-By default this mixin will output to font-size. If you need to use another property instead of font-size you can pass a 2nd argument with the desired property to the mixin.
-
-<table>
-  <tr>
-    <th>Argument</th>
-    <th>Required</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td>Value</td><td>Required</td><td>None</td>
-  </tr>
-  <tr>
-    <td>Property</td><td>Optional</td><td>'font-size'</td>
-  </tr>
-</table>
-
+---
 ### Box Sizing Mixin
 
 Mixin for defining box sizing.
