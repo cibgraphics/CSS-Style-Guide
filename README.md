@@ -507,10 +507,10 @@ Example (preferred):
 
 ```css
 :root {
-  --primary: #b20215;
-  --secondary: #149ff6;
-  --grey: #848484;
-  --brown: #a89f94;
+  --primary:    #b20215;
+  --secondary:  #149ff6;
+  --grey:       #848484;
+  --brown:      #a89f94;
 }
 
 .button {
@@ -558,7 +558,6 @@ Use CSS logical properties instead of physical properties to keep layouts direct
 
 ## CSS Preprocessor Rules
 
----
 ### File Organization
 
 Separate your files into logical groups.
