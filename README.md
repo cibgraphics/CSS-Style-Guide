@@ -805,7 +805,9 @@ With this rem conversion you can automatically convert a px unit into a rem.
 ```css
 /* Requires custom property without unit */
 --base-font-size-strip: 16;
+```
 
+```css
 @use "sass:math";
 
 @function rem($value) {
@@ -832,8 +834,7 @@ Mixin:
 }
 ```
 
-Usage:
-
 ```css
+/* Usage */
 @include box-sizing();
 ```
