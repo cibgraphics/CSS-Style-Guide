@@ -4,45 +4,48 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
 
 ## Table of Contents
 1. [General Meta Rules](#general-meta-rules)
-  * [Protocol](#protocol)
+    * [Protocol](#protocol)
 2. [CSS Formatting Rules](#css-formatting-rules)
-  * [Indentation](#indentation)
-  * [Block Content Indentation](#block-content-indentation)
-  * [Capitalization](#capitalization)
-  * [Trailing White Space](#trailing-white-space)
-  * [Declaration Stops](#declaration-stops)
-  * [Property Name Stops](#property-name-stops)
-  * [Declaration Block Separation](#declaration-block-separation)
-  * [Selector and Declaration Separation](#selector-and-declaration-separation)
-  * [Rule Separation](#rule-separation)
-  * [CSS Quotation Marks](#css-quotation-marks)
+    * [Indentation](#indentation)
+    * [Block Content Indentation](#block-content-indentation)
+    * [Capitalization](#capitalization)
+    * [Trailing White Space](#trailing-white-space)
+    * [Declaration Stops](#declaration-stops)
+    * [Property Name Stops](#property-name-stops)
+    * [Declaration Block Separation](#declaration-block-separation)
+    * [Selector and Declaration Separation](#selector-and-declaration-separation)
+    * [Rule Separation](#rule-separation)
+    * [CSS Quotation Marks](#css-quotation-marks)
 3. [CSS Style Rules](#css-style-rules)
-  * [CSS Validity](#css-validity)
-  * [ID and Classes](#id-and-classes)
-  * [ID and Class Naming](#id-and-class-naming)
-  * [ID and Class Name Delimiters](#id-and-class-name-delimiters)
-  * [ID and Class Name Style](#id-and-class-name-style)
-  * [Type Selectors](#type-selectors)
-  * [Shorthand Properties](#shorthand-properties)
-  * [0 and Units](#0-and-units)
-  * [Leading 0s](#leading-0s)
-  * [Hexadecimal Notation](#hexadecimal-notation)
-  * [Hacks](#hacks)
+    * [CSS Validity](#css-validity)
+    * [ID and Classes](#id-and-classes)
+    * [ID and Class Naming](#id-and-class-naming)
+    * [ID and Class Name Delimiters](#id-and-class-name-delimiters)
+    * [ID and Class Name Style](#id-and-class-name-style)
+    * [Type Selectors](#type-selectors)
+    * [Shorthand Properties](#shorthand-properties)
+    * [0 and Units](#0-and-units)
+    * [Leading 0s](#leading-0s)
+    * [Hexadecimal Notation](#hexadecimal-notation)
+    * [Hacks](#hacks)
 4. [CSS Meta Rules](#css-meta-rules)
-  * [Encoding](#encoding)
-  * [Comments](#comments)
-  * [Section Comments](#section-comments)
+    * [Encoding](#encoding)
+    * [Comments](#comments)
+    * [Section Comments](#section-comments)
 5. [Modern CSS](#modern-css)
-  * [CSS Custom Properties](#css-custom-properties)
-  * [Logical Properties](#logical-properties)
+    * [CSS Custom Properties](#css-custom-properties)
+    * [Logical Properties](#logical-properties)
 6. [CSS Preprocessor Rules](#css-preprocessor-rules)
-  * [File Organization](#file-organization)
-  * [Nesting Rule Separation](#nesting-rule-separation)
-  * [Multiple Variable Declaration](#multiple-variable-declaration)
+    * [File Organization](#file-organization)
+    * [Nesting Rule Separation](#nesting-rule-separation)
+    * [Multiple Variable Declaration](#multiple-variable-declaration)
 7. [CSS Preprocessor Helpers](#css-preprocessor-helpers)
-  * [Clearing Floats](#clearing-floats)
-  * [Rem Units](#rem-units)
-  * [Box Sizing Mixin](#box-sizing-mixin)
+    * [Breakpoints](#breakpoints)
+    * [Media Queries](#media-queries)
+    * [Container Queries](#container-queries)
+    * [Clearing Floats](#clearing-floats)
+    * [Rem Units](#rem-units)
+    * [Box Sizing Mixin](#box-sizing-mixin)
 
 
 ## General Meta Rules
@@ -193,21 +196,42 @@ Always use a single space between the last selector and the opening brace of the
 ---
 ### Selector and Declaration Separation
 
-Separate new selectors and declarations by new lines.
+Place declarations on their own lines.
+
+Selectors may share a line **only when they are closely related** (e.g., sharing the same styling role).
+
+Otherwise, place each selector on its own line for clarity and maintainability.
+
+**Do not:**
+- Put declarations on the same line.
+- Combine unrelated selectors onto one line.
 
 ```css
-/* Not Recommend */
-h1, h2 {
-  font-weight: normal; inset-block-start: 1px;
+/* Not Recommended — unrelated selectors crammed together */
+h1, .card-title {
+  font-weight: 600;
 }
 
-/* Not Recommend */
-.example { display: block; }
+/* Not Recommended — declarations on same line */
+.example { display: block; color: red; }
 
-/* Recommend */
-h2 {
-  font-weight: normal;
-  inset-block-start: 1px;
+/* Recommended — related selectors on one line */
+h1, h2 {
+  font-weight: 600;
+  margin-block-end: 0.5em;
+}
+
+/* Recommended — unrelated selectors on separate lines */
+h1,
+.card-title,
+.page-heading {
+  font-weight: 600;
+}
+
+/* Recommended — declarations separated cleanly */
+.example {
+  display: block;
+  color: red;
 }
 ```
 
@@ -216,7 +240,7 @@ h2 {
 
 Separate new rules by new lines.
 
-Always put a blank line (two line breaks) between rules.
+Always put a blank line (two line breaks) between rules. No new line is needed at the end of files.
 
 ```css
 html {
@@ -231,24 +255,32 @@ body {
 ---
 ### CSS Quotation Marks
 
-Use a single quote for attribute selectors and property values.
+Use double quotes for CSS strings and attribute selectors. 
 
-Do not use quotation marks for URL values.
-
-Exception: If you do need to use the @charset rule, use double quotation marks.
+Do not quote `url()` values unless the URL contains spaces or special characters.
 
 ```css
 /* Not Recommend */
 html {
-  font-family: "open sans", arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
   background: url('example.jpg');
 }
 
 /* Recommended */
 html {
-  font-family: 'open sans', arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
   background: url(example.jpg);
 }
+
+input[type="text"] {
+  border: 1px solid #ccc;
+}
+```
+
+@charset must always use double quotes. Please note that this code is not needed in modern setups.
+
+```css
+@charset "UTF-8";
 ```
 
 
@@ -289,7 +321,7 @@ Use ID and class names that reflect the purpose of the element in question, or t
 
 Separate ID and class names by hyphens.
 
-Do not use underscores, camel case, double hyphens, or any other delimiters.
+Do not use underscores, camel case, double hyphens, or any other delimiters unless you are using a system like BEM or similar.
 
 ```css
 /* Not Recommended */
@@ -387,15 +419,18 @@ Avoid CSS hacks. Try a different approach first.
 
 The days of IE6 are far behind us. Avoid hacks to target specific browsers unless absolutely necessary. Try a different coding approach first before resorting to a "hack".
 
----
+
 ## CSS Meta Rules
 
----
 ### Encoding
 
 Use UTF-8.
 
-Specify the encoding in HTML via `<meta charset="utf-8">`. Do not specify the encoding of stylesheets as these assume UTF-8.
+Specify the encoding in HTML. Do not specify the encoding of stylesheets as these assume UTF-8.
+
+```html
+<meta charset="utf-8">
+```
 
 ---
 ### Comments
