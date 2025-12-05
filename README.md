@@ -4,7 +4,7 @@ This document defines formatting and style rules for HTML and CSS. It aims at im
 
 ## Table of Contents
 1. [General Meta Rules](#general-meta-rules)
-  * [Protocal](#protocal)
+  * [Protocol](#protocol)
 2. [CSS Formatting Rules](#css-formatting-rules)
   * [Indentation](#indentation)
   * [Block Content Indentation](#block-content-indentation)
